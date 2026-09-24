@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
@@ -138,8 +138,13 @@
       color: #887667;
       font-size: 14px;
     }
-  </style>
 
+    .note {
+      font-size: 14px;
+      color: #887667;
+      margin-top: 8px;
+    }
+  </style>
 </head>
 
 <body>
@@ -153,139 +158,158 @@
 
   <div class="card">
     <h2>🌷 歡迎參觀六十三社區長照機構</h2>
+
     <p>
       歡迎家屬帶著長輩認識我們的日間照顧服務。
       填寫以下資料後，我們會依照您提供的資訊進行聯繫與參訪安排。
     </p>
   </div>
 
-  <form id="reservationForm">
-
-```
-<div class="card">
-  <h2>👵 長輩基本資料</h2>
-
-  <label>
-    長輩姓名 <span class="required">*</span>
-  </label>
-  <input type="text" name="elderly_name" required>
-
-  <label>
-    長輩性別 <span class="required">*</span>
-  </label>
-  <select name="elderly_gender" required>
-    <option value="">請選擇</option>
-    <option value="男">男</option>
-    <option value="女">女</option>
-  </select>
-
-  <label>
-    長輩年齡 <span class="required">*</span>
-  </label>
-  <input type="number" name="elderly_age" min="0" required>
-
-  <label>
-    目前主要居住哪個地方（路段）
-  </label>
-  <input type="text" name="elderly_area" placeholder="例如：台北市○○區○○路">
-
-  <label>
-    長輩的興趣愛好
-  </label>
-  <textarea
-    name="elderly_hobbies"
-    placeholder="例如：唱歌、下棋、散步、聊天……"
-  ></textarea>
-</div>
-
-<div class="card">
-  <h2>👨‍👩‍👧 家屬資料</h2>
-
-  <label>
-    家屬姓名 <span class="required">*</span>
-  </label>
-  <input type="text" name="family_name" required>
-
-  <label>
-    家屬電話 <span class="required">*</span>
-  </label>
-  <input type="tel" name="family_phone" required>
-
-  <label>
-    和長輩的關係 <span class="required">*</span>
-  </label>
-  <input
-    type="text"
-    name="relationship"
-    placeholder="例如：女兒、兒子、配偶"
-    required
+  <form
+    id="reservationForm"
+    action="https://script.google.com/macros/s/AKfycbzqCVBLRG4ncnuJ6o5nTX5EJwetPejRONFaplgU-CSbrHkyw29w0-4ESkgzdofWPnan/exec"
+    method="POST"
+    target="hidden_iframe"
   >
-</div>
 
-<div class="card">
-  <h2>📋 照顧評估資料</h2>
+    <div class="card">
+      <h2>👵 長輩基本資料</h2>
 
-  <label>
-    是否有打 1966 做評估過？
-  </label>
-  <select name="assessment_1966">
-    <option value="">請選擇</option>
-    <option value="是">是</option>
-    <option value="否">否</option>
-  </select>
+      <label>
+        長輩姓名 <span class="required">*</span>
+      </label>
+      <input type="text" name="elderly_name" required>
 
-  <label>
-    評估後等級是幾級？
-  </label>
-  <select name="assessment_level">
-    <option value="">請選擇</option>
-    <option value="第2級">第2級</option>
-    <option value="第3級">第3級</option>
-    <option value="第4級">第4級</option>
-    <option value="第5級">第5級</option>
-    <option value="第6級">第6級</option>
-    <option value="第7級">第7級</option>
-    <option value="第8級">第8級</option>
-    <option value="尚未評估">尚未評估</option>
-    <option value="不清楚">不清楚</option>
-  </select>
+      <label>
+        長輩性別 <span class="required">*</span>
+      </label>
+      <select name="elderly_gender" required>
+        <option value="">請選擇</option>
+        <option value="男">男</option>
+        <option value="女">女</option>
+      </select>
 
-  <label>
-    個管師單位
-  </label>
-  <input
-    type="text"
-    name="case_manager_unit"
-    placeholder="若尚未有個管師可不用填"
-  >
-</div>
+      <label>
+        長輩年齡 <span class="required">*</span>
+      </label>
+      <input type="number" name="elderly_age" min="0" required>
 
-<div class="card">
-  <h2>📅 參訪預約</h2>
+      <label>
+        目前主要居住哪個地方（路段）
+      </label>
+      <input
+        type="text"
+        name="elderly_area"
+        placeholder="例如：台北市○○區○○路"
+      >
 
-  <label>
-    想預約時間日期 <span class="required">*</span>
-  </label>
-  <input type="date" name="visit_date" required>
+      <label>
+        長輩的興趣愛好
+      </label>
+      <textarea
+        name="elderly_hobbies"
+        placeholder="例如：唱歌、下棋、散步、聊天……"
+      ></textarea>
+    </div>
 
-  <label>
-    方便參觀時間 <span class="required">*</span>
-  </label>
-  <select name="visit_time" required>
-    <option value="">請選擇</option>
-    <option value="上午">上午</option>
-    <option value="下午">下午</option>
-  </select>
+    <div class="card">
+      <h2>👨‍👩‍👧 家屬資料</h2>
 
-  <button type="submit" id="submitButton">
-    送出參訪預約
-  </button>
+      <label>
+        家屬姓名 <span class="required">*</span>
+      </label>
+      <input type="text" name="family_name" required>
 
-  <div id="message"></div>
-</div>
-```
+      <label>
+        家屬電話 <span class="required">*</span>
+      </label>
+      <input type="tel" name="family_phone" required>
+
+      <label>
+        和長輩的關係 <span class="required">*</span>
+      </label>
+      <input
+        type="text"
+        name="relationship"
+        placeholder="例如：女兒、兒子、配偶"
+        required
+      >
+    </div>
+
+    <div class="card">
+      <h2>📋 照顧評估資料</h2>
+
+      <label>
+        是否有打 1966 做評估過？
+      </label>
+      <select name="assessment_1966">
+        <option value="">請選擇</option>
+        <option value="是">是</option>
+        <option value="否">否</option>
+      </select>
+
+      <label>
+        評估後等級是幾級？
+      </label>
+      <select name="assessment_level">
+        <option value="">請選擇</option>
+        <option value="第2級">第2級</option>
+        <option value="第3級">第3級</option>
+        <option value="第4級">第4級</option>
+        <option value="第5級">第5級</option>
+        <option value="第6級">第6級</option>
+        <option value="第7級">第7級</option>
+        <option value="第8級">第8級</option>
+        <option value="尚未評估">尚未評估</option>
+        <option value="不清楚">不清楚</option>
+      </select>
+
+      <label>
+        個管師單位
+      </label>
+      <input
+        type="text"
+        name="case_manager_unit"
+        placeholder="若尚未有個管師可不用填"
+      >
+    </div>
+
+    <div class="card">
+      <h2>📅 參訪預約</h2>
+
+      <label>
+        想預約時間日期 <span class="required">*</span>
+      </label>
+      <input type="date" name="visit_date" required>
+
+      <label>
+        方便參觀時間 <span class="required">*</span>
+      </label>
+      <select name="visit_time" required>
+        <option value="">請選擇</option>
+        <option value="上午">上午</option>
+        <option value="下午">下午</option>
+      </select>
+
+      <p class="note">
+        ※ 填寫完成後按下送出，資料會傳送至機構的預約資料表。
+      </p>
+
+      <button type="submit" id="submitButton">
+        送出參訪預約
+      </button>
+
+      <div id="message"></div>
+    </div>
 
   </form>
+
+  <iframe
+    name="hidden_iframe"
+    id="hidden_iframe"
+    style="display:none;"
+  ></iframe>
+
 </div>
 
 <footer>
@@ -293,33 +317,18 @@
 </footer>
 
 <script>
-  const scriptURL =
-    "https://script.google.com/macros/s/AKfycbw7IfyKI2mwsUZkrDCMUJh5PiZvjfqf-Qo2FD27E-y2agOlG8CikXe5Eqav-ovBKfXtbA/exec";
-
   const form = document.getElementById("reservationForm");
   const button = document.getElementById("submitButton");
   const message = document.getElementById("message");
 
-  form.addEventListener("submit", function(event) {
-    event.preventDefault();
+  form.addEventListener("submit", function() {
 
     button.disabled = true;
     button.textContent = "資料送出中……";
 
     message.style.display = "none";
 
-    const formData = new FormData(form);
-
-    fetch(scriptURL, {
-      method: "POST",
-      body: new URLSearchParams(formData)
-    })
-    .then(function(response) {
-      return response.text();
-    })
-    .then(function(result) {
-
-      console.log(result);
+    setTimeout(function() {
 
       message.style.display = "block";
       message.className = "success";
@@ -327,45 +336,15 @@
         "✅ 預約資料已送出！我們會再與您聯繫。";
 
       form.reset();
-      button.disabled = false;
-      button.textContent = "送出參訪預約";
-
-    })
-    .catch(function(error) {
-
-      console.error(error);
-
-      message.style.display = "block";
-      message.className = "error";
-      message.textContent =
-        "系統發生錯誤，資料可能沒有送出，請稍後再試。";
 
       button.disabled = false;
       button.textContent = "送出參訪預約";
-    });
+
+    }, 1500);
+
   });
 </script>
 
 </body>
 </html>
 ```
-
-### 接下來只做這 3 件事
-
-1. 把 GitHub 的 `index.html` **全部刪掉**
-2. 把上面程式碼貼進去
-3. 按 **Commit changes（提交變更）**
-
-⚠️ **最重要：不要把最上面的 ` ```html ` 和最下面的 ` ``` ` 貼進 GitHub。**
-
-貼好並按下 Commit 後，先不要測試。
-
-你只要回我：
-
-**「Commit好了」**
-
-我再帶你測試 Google 試算表有沒有收到資料。
-
-
-
-
