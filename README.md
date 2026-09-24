@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -127,11 +126,6 @@
       color: #50734b;
     }
 
-    .error {
-      background: #f9e2df;
-      color: #a24d43;
-    }
-
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -242,6 +236,7 @@
       <label>
         是否有打 1966 做評估過？
       </label>
+
       <select name="assessment_1966">
         <option value="">請選擇</option>
         <option value="是">是</option>
@@ -251,6 +246,7 @@
       <label>
         評估後等級是幾級？
       </label>
+
       <select name="assessment_level">
         <option value="">請選擇</option>
         <option value="第2級">第2級</option>
@@ -267,6 +263,7 @@
       <label>
         個管師單位
       </label>
+
       <input
         type="text"
         name="case_manager_unit"
@@ -280,11 +277,17 @@
       <label>
         想預約時間日期 <span class="required">*</span>
       </label>
-      <input type="date" name="visit_date" required>
+
+      <input
+        type="date"
+        name="visit_date"
+        required
+      >
 
       <label>
         方便參觀時間 <span class="required">*</span>
       </label>
+
       <select name="visit_time" required>
         <option value="">請選擇</option>
         <option value="上午">上午</option>
@@ -325,8 +328,6 @@
 
     button.disabled = true;
     button.textContent = "資料送出中……";
-
-    message.style.display = "none";
 
     setTimeout(function() {
 
