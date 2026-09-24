@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>六十三社區長照機構｜參訪預約</title>
 
   <style>
@@ -39,7 +40,7 @@
     }
 
     .header p {
-      margin: 0;
+      margin: 5px 0;
       font-size: 16px;
       line-height: 1.8;
     }
@@ -85,6 +86,13 @@
       resize: vertical;
     }
 
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #c99d68;
+    }
+
     .submit-area {
       text-align: center;
       margin-top: 25px;
@@ -102,6 +110,10 @@
       cursor: pointer;
     }
 
+    button:hover {
+      background: #b98b57;
+    }
+
     button:disabled {
       background: #c8b8a6;
       cursor: not-allowed;
@@ -113,11 +125,17 @@
       padding: 14px;
       border-radius: 12px;
       text-align: center;
+      line-height: 1.6;
     }
 
     .success {
       background: #edf5e9;
       color: #55704d;
+    }
+
+    .error {
+      background: #f8e8e4;
+      color: #8a4d43;
     }
 
     .footer {
@@ -126,6 +144,25 @@
       font-size: 14px;
       line-height: 1.8;
       margin-top: 25px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 12px;
+      }
+
+      .header {
+        padding: 28px 18px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .card {
+        padding: 22px 18px;
+      }
     }
   </style>
 
@@ -141,149 +178,25 @@
     <p>歡迎家屬與長輩提前預約參觀，讓我們一起了解適合長輩的照顧服務。</p>
   </div>
 
+  <!--
+    這裡就是 Google Apps Script 的網址
+  -->
+
   <form
     id="reservationForm"
-    action="https://script.google.com/macros/s/AKfycbx2SJhWnFS7qkz6L-3HxIemWC7ug1j3nyK0yy_Yk5rq5c0FZIejqm5KUXSPaOxqv443/exec"
+    action="https://script.google.com/macros/s/AKfycbzf7ttVtqMNnTXvp9W25sgWjx7N1XxVWJF2CVHt5RFEMcrHsZ-4xZ9VCd9FmS_x544F/exec"
     method="POST"
     target="hidden_iframe"
   >
 
 ```
 <div class="card">
+
   <h2>👴 長輩基本資料</h2>
 
-  <label>長輩姓名</label>
-  <input type="text" name="elderly_name" required>
-
-  <label>長輩性別</label>
-  <select name="elderly_gender" required>
-    <option value="">請選擇</option>
-    <option value="男">男</option>
-    <option value="女">女</option>
-  </select>
-
-  <label>長輩年齡</label>
-  <input type="number" name="elderly_age" required>
-
-  <label>目前主要居住哪個地方（路段）</label>
-  <input type="text" name="elderly_area" required>
-
-  <label>長輩的興趣愛好</label>
-  <textarea name="elderly_hobbies"></textarea>
-</div>
-
-<div class="card">
-  <h2>👨‍👩‍👧 家屬資料</h2>
-
-  <label>家屬姓名</label>
-  <input type="text" name="family_name" required>
-
-  <label>家屬電話</label>
-  <input type="tel" name="family_phone" required>
-
-  <label>和長輩的關係</label>
-  <select name="relationship" required>
-    <option value="">請選擇</option>
-    <option value="兒子">兒子</option>
-    <option value="女兒">女兒</option>
-    <option value="媳婦">媳婦</option>
-    <option value="女婿">女婿</option>
-    <option value="配偶">配偶</option>
-    <option value="孫子女">孫子女</option>
-    <option value="其他">其他</option>
-  </select>
-</div>
-
-<div class="card">
-  <h2>📋 長照評估資料</h2>
-
-  <label>是否有打 1966 做評估過</label>
-  <select name="assessment_1966" required>
-    <option value="">請選擇</option>
-    <option value="是">是</option>
-    <option value="否">否</option>
-  </select>
-
-  <label>評估後等級是幾級</label>
-  <select name="assessment_level">
-    <option value="">尚未評估／不知道</option>
-    <option value="第2級">第2級</option>
-    <option value="第3級">第3級</option>
-    <option value="第4級">第4級</option>
-    <option value="第5級">第5級</option>
-    <option value="第6級">第6級</option>
-    <option value="第7級">第7級</option>
-    <option value="第8級">第8級</option>
-  </select>
-
-  <label>個管師單位</label>
-  <input type="text" name="case_manager_unit">
-</div>
-
-<div class="card">
-  <h2>📅 參訪預約</h2>
-
-  <label>想預約時間日期</label>
-  <input type="date" name="visit_date" required>
-
-  <label>方便參觀時間</label>
-  <select name="visit_time" required>
-    <option value="">請選擇</option>
-    <option value="上午">上午</option>
-    <option value="下午">下午</option>
-  </select>
-
-  <div class="submit-area">
-    <button type="submit" id="submitButton">
-      送出參訪預約
-    </button>
-
-    <div id="message"></div>
-  </div>
-</div>
+  <label for="elderly_name">長輩姓名</label>
+  <input
+    type="text"
+    id="elderly_name"
+    name="elderly_nam_
 ```
-
-  </form>
-
-  <iframe
-    name="hidden_iframe"
-    id="hidden_iframe"
-    style="display:none;"
-  ></iframe>
-
-  <div class="footer">
-    台北市私立六十三社區長照機構(日照機構)<br>
-    感謝您填寫參訪預約，我們會再與您聯繫。
-  </div>
-
-</div>
-
-<script>
-  const form = document.getElementById("reservationForm");
-  const button = document.getElementById("submitButton");
-  const message = document.getElementById("message");
-
-  form.addEventListener("submit", function() {
-
-    button.disabled = true;
-    button.textContent = "資料送出中……";
-
-    setTimeout(function() {
-
-      message.style.display = "block";
-      message.className = "success";
-      message.textContent =
-        "✅ 預約資料已送出！我們會再與您聯繫。";
-
-      form.reset();
-
-      button.disabled = false;
-      button.textContent = "送出參訪預約";
-
-    }, 1500);
-
-  });
-</script>
-
-</body>
-</html>
