@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>六十三社區長照機構｜參訪預約</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+      background: #f8f1e7;
+      color: #5f5146;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px 12px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #e8cfae, #d9b894);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(120, 90, 60, 0.12);
+      position: relative;
+    }
+
+    .header-logo {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: #fff;
+      padding: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .header h1 {
+      color: #5a4636;
+      font-size: 28px;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    .header .subtitle {
+      color: #6b5544;
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .header p {
+      color: #7a6554;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .card {
+      background: #fffaf4;
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 14px rgba(120, 90, 60, 0.08);
+    }
+
+    .card h2 {
+      color: #6b5544;
+      font-size: 19px;
+      border-left: 5px solid #d6ad78;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #5f5146;
+    }
+
+    label .required {
+      color: #c45c26;
+      margin-left: 2px;
+    }
+
+    label .hint {
+      font-weight: 400;
+      font-size: 13px;
+      color: #8b7a6b;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #dccdbb;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 16px;
+      font-family: inherit;
+      color: #5f5146;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #c99d68;
+      box-shadow: 0 0 0 3px rgba(201, 157, 104, 0.2);
+    }
+
+    input:invalid:not(:placeholder-shown),
+    select:invalid:not(:placeholder-shown) {
+      border-color: #e07a5f;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b5544' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      background: #c99d68;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: #b88a55;
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:disabled {
+      background: #c8b8a6;
+      cursor: not-allowed;
+    }
+
+    #message {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    #message.success {
+      display: block;
+      background: #edf5e9;
+      color: #3d6b3a;
+      border: 1px solid #c5dfc0;
+    }
+
+    #message.error {
+      display: block;
+      background: #fdf0ee;
+      color: #a33a2c;
+      border: 1px solid #f0c4bc;
+    }
+
+    .footer {
+      text-align: center;
+      color: #8b7a6b;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 22px;
+        padding-left: 50px;
+        padding-right: 10px;
+      }
+      .header-logo {
+        width: 48px;
+        height: 48px;
+        top: 12px;
+        left: 12px;
+      }
+      .card {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img class="header-logo" src="data:image/jpeg;base64,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" alt="六十三社區長照機構 Logo">
+      <h1>六十三社區長照機構</h1>
+      <p class="subtitle">日照機構參訪預約</p>
+      <p>歡迎家屬與長輩提前預約參觀，讓我們一起了解適合長輩的照顧服務。</p>
+    </div>
+
+    <!-- ★★★ 把下面的 chen.xinyu0106@gmail.com 改成你自己的 Email ★★★ -->
+    <form 
+      id="reservationForm"
+      action="https://formsubmit.co/chen.xinyu0106@gmail.com"
+      method="POST"
+    >
+      <input type="hidden" name="_subject" value="【六十三社區長照】新參訪預約通知">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://zqj07010413.github.io/Zqj07010413/?success=1">
+      <input type="text" name="_honey" style="display:none">
+
+      <div class="card">
+        <h2>👴 長輩基本資料</h2>
+
+        <div class="form-group">
+          <label for="elderly_name">長輩姓名 <span class="required">*</span></label>
+          <input type="text" id="elderly_name" name="長輩姓名" required placeholder="請輸入長輩姓名">
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_gender">長輩性別 <span class="required">*</span></label>
+          <select id="elderly_gender" name="長輩性別" required>
+            <option value="">請選擇</option>
+            <option value="男">男</option>
+            <option value="女">女</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_age">長輩年齡 <span class="required">*</span> <span class="hint">（須 65 歲以上）</span></label>
+          <input type="number" id="elderly_age" name="長輩年齡" min="65" max="120" required placeholder="例如：78">
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_area">目前主要居住地方（路段） <span class="required">*</span> <span class="hint">（僅限中文與數字）</span></label>
+          <input type="text" id="elderly_area" name="居住地方" required placeholder="例如：台北市大安區仁愛路" pattern="[\u4e00-\u9fff\u3400-\u4dbf0-9]+" title="只能輸入中文與數字">
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_hobbies">長輩的興趣愛好</label>
+          <textarea id="elderly_hobbies" name="興趣愛好" placeholder="例如：唱歌、聊天、散步、看電視……"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>👨‍👩‍👧 家屬資料</h2>
+
+        <div class="form-group">
+          <label for="family_name">家屬姓名 <span class="required">*</span></label>
+          <input type="text" id="family_name" name="家屬姓名" required placeholder="請輸入家屬姓名">
+        </div>
+
+        <div class="form-group">
+          <label for="family_phone">家屬電話 <span class="required">*</span> <span class="hint">（須為 10 位數字）</span></label>
+          <input type="tel" id="family_phone" name="家屬電話" required placeholder="例如：0912345678" pattern="[0-9]{10}" maxlength="10" title="請輸入 10 位數字">
+        </div>
+
+        <div class="form-group">
+          <label for="relationship">和長輩的關係 <span class="required">*</span></label>
+          <select id="relationship" name="關係" required>
+            <option value="">請選擇</option>
+            <option value="兒子">兒子</option>
+            <option value="女兒">女兒</option>
+            <option value="媳婦">媳婦</option>
+            <option value="女婿">女婿</option>
+            <option value="配偶">配偶</option>
+            <option value="孫子女">孫子女</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 長照評估資料</h2>
+
+        <div class="form-group">
+          <label for="assessment_1966">是否有打 1966 做評估過 <span class="required">*</span></label>
+          <select id="assessment_1966" name="是否評估1966" required>
+            <option value="">請選擇</option>
+            <option value="是">是</option>
+            <option value="否">否</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="assessment_level">評估後等級是幾級</label>
+          <select id="assessment_level" name="評估等級">
+            <option value="">尚未評估／不知道</option>
+            <option value="第2級">第2級</option>
+            <option value="第3級">第3級</option>
+            <option value="第4級">第4級</option>
+            <option value="第5級">第5級</option>
+            <option value="第6級">第6級</option>
+            <option value="第7級">第7級</option>
+            <option value="第8級">第8級</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="case_manager_unit">個管師單位</label>
+          <input type="text" id="case_manager_unit" name="個管師單位" placeholder="若沒有可留白">
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📅 參訪預約</h2>
+
+        <div class="form-group">
+          <label for="visit_date">想預約日期 <span class="required">*</span></label>
+          <input type="date" id="visit_date" name="預約日期" required>
+        </div>
+
+        <div class="form-group">
+          <label for="visit_time">方便參觀時間 <span class="required">*</span></label>
+          <select id="visit_time" name="參觀時間" required>
+            <option value="">請選擇</option>
+            <option value="上午">上午</option>
+            <option value="下午">下午</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitButton">送出參訪預約</button>
+        <div id="message"></div>
+      </div>
+    </form>
+
+    <div class="footer">
+      台北市私立六十三社區長照機構（日照機構）<br>
+      感謝您填寫參訪預約，我們會再與您聯繫。
+    </div>
+  </div>
+
+  <script>
+    // 日期最小值為今天
+    const dateInput = document.getElementById("visit_date");
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
+
+    // 成功訊息
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("success") === "1") {
+      const message = document.getElementById("message");
+      message.className = "success";
+      message.textContent = "✅ 預約資料已成功送出！我們會再與您聯繫。";
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // 居住地方：只允許中文與數字
+    const areaInput = document.getElementById("elderly_area");
+    areaInput.addEventListener("input", function () {
+      this.value = this.value.replace(/[^\u4e00-\u9fff\u3400-\u4dbf0-9]/g, "");
+    });
+
+    // 家屬電話：只允許數字，最多 10 位
+    const phoneInput = document.getElementById("family_phone");
+    phoneInput.addEventListener("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
+
+    // 年齡驗證提示
+    const ageInput = document.getElementById("elderly_age");
+    ageInput.addEventListener("input", function () {
+      if (this.value && Number(this.value) < 65) {
+        this.setCustomValidity("長輩年齡須為 65 歲以上");
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+
+    const form = document.getElementById("reservationForm");
+    const button = document.getElementById("submitButton");
+
+    form.addEventListener("submit", function () {
+      button.disabled = true;
+      button.textContent = "資料送出中……";
+    });
+  </script>
+</body>
+</html>
