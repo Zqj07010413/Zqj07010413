@@ -1,273 +1,408 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>六十三社區長照機構｜參訪預約</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>六十三社區長照機構｜參訪預約</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-* {
-  box-sizing: border-box;
-}
+    body {
+      font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+      background: #f8f1e7;
+      color: #5f5146;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px 12px;
+    }
 
-body {
-  margin: 0;
-  font-family: "Microsoft JhengHei", sans-serif;
-  background: #f8f1e7;
-  color: #5f5146;
-}
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
 
-.container {
-  max-width: 760px;
-  margin: 40px auto;
-  padding: 20px;
-}
+    .header {
+      background: linear-gradient(135deg, #e8cfae, #d9b894);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(120, 90, 60, 0.12);
+      position: relative;
+    }
 
-.header {
-  background: #e8cfae;
-  border-radius: 24px;
-  padding: 35px 25px;
-  text-align: center;
-  margin-bottom: 25px;
-}
+    .header-logo {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: #fff;
+      padding: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
 
-.header h1 {
-  margin: 0 0 10px;
-  color: #6b5544;
-  font-size: 30px;
-}
+    .header h1 {
+      color: #5a4636;
+      font-size: 28px;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      padding-left: 60px;
+      padding-right: 60px;
+    }
 
-.header p {
-  margin: 5px 0;
-  line-height: 1.8;
-}
+    .header .subtitle {
+      color: #6b5544;
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
 
-.card {
-  background: #fffaf4;
-  border-radius: 22px;
-  padding: 30px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 18px rgba(120, 90, 60, 0.08);
-}
+    .header p {
+      color: #7a6554;
+      font-size: 14px;
+      line-height: 1.7;
+    }
 
-.card h2 {
-  margin-top: 0;
-  color: #725c49;
-  font-size: 21px;
-  border-left: 5px solid #d6ad78;
-  padding-left: 10px;
-}
+    .card {
+      background: #fffaf4;
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 14px rgba(120, 90, 60, 0.08);
+    }
 
-label {
-  display: block;
-  margin-top: 18px;
-  margin-bottom: 7px;
-  font-weight: bold;
-}
+    .card h2 {
+      color: #6b5544;
+      font-size: 19px;
+      border-left: 5px solid #d6ad78;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
 
-input,
-select,
-textarea {
-  display: block;
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #dccdbb;
-  border-radius: 12px;
-  background: white;
-  font-size: 16px;
-  font-family: "Microsoft JhengHei", sans-serif;
-  color: #5f5146;
-}
+    .form-group {
+      margin-bottom: 18px;
+    }
 
-textarea {
-  min-height: 90px;
-  resize: vertical;
-}
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #5f5146;
+    }
 
-button {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 15px;
-  background: #c99d68;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 25px;
-}
+    label .required {
+      color: #c45c26;
+      margin-left: 2px;
+    }
 
-button:disabled {
-  background: #c8b8a6;
-}
+    label .hint {
+      font-weight: normal;
+      font-size: 13px;
+      color: #8b7a6b;
+    }
 
-#message {
-  display: none;
-  margin-top: 18px;
-  padding: 14px;
-  border-radius: 12px;
-  text-align: center;
-}
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #dccdbb;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 16px;
+      font-family: inherit;
+      color: #5f5146;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
-.success {
-  display: block !important;
-  background: #edf5e9;
-  color: #55704d;
-}
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #c99d68;
+      box-shadow: 0 0 0 3px rgba(201, 157, 104, 0.2);
+    }
 
-.footer {
-  text-align: center;
-  color: #8b7a6b;
-  font-size: 14px;
-  line-height: 1.8;
-  margin-top: 25px;
-}
-</style>
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b5544' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      background: #c99d68;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: #b88a55;
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:disabled {
+      background: #c8b8a6;
+      cursor: not-allowed;
+    }
+
+    #message {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    #message.success {
+      display: block;
+      background: #edf5e9;
+      color: #3d6b3a;
+      border: 1px solid #c5dfc0;
+    }
+
+    #message.error {
+      display: block;
+      background: #fdf0ee;
+      color: #a33a2c;
+      border: 1px solid #f0c4bc;
+    }
+
+    .footer {
+      text-align: center;
+      color: #8b7a6b;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 24px;
+      }
+      .card {
+        padding: 22px 18px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
+  <div class="container">
+    <div class="header">
+      <img src="https://zqj07010413.github.io/Zqj07010413/logo.png" alt="六十三社區長照機構" class="header-logo" onerror="this.style.display='none'">
+      <h1>六十三社區長照機構</h1>
+      <p class="subtitle">日照機構參訪預約</p>
+      <p>歡迎家屬與長輩提前預約參觀，讓我們一起了解適合長輩的照顧服務。</p>
+    </div>
 
-  <div class="header">
-    <h1>六十三社區長照機構</h1>
-    <p><strong>日照機構參訪預約</strong></p>
-    <p>歡迎家屬與長輩提前預約參觀，讓我們一起了解適合長輩的照顧服務。</p>
+    <form 
+      id="reservationForm"
+      action="https://formsubmit.co/chen.xinyu0106@gmail.com"
+      method="POST"
+    >
+      <input type="hidden" name="_subject" value="【六十三社區長照】新參訪預約通知">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://zqj07010413.github.io/Zqj07010413/?success=1">
+      <input type="text" name="_honey" style="display:none">
+
+      <div class="card">
+        <h2>👴 長輩基本資料</h2>
+
+        <div class="form-group">
+          <label for="elderly_name">長輩姓名 <span class="required">*</span></label>
+          <input type="text" id="elderly_name" name="長輩姓名" required placeholder="請輸入長輩姓名">
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_gender">長輩性別 <span class="required">*</span></label>
+          <select id="elderly_gender" name="長輩性別" required>
+            <option value="">請選擇</option>
+            <option value="男">男</option>
+            <option value="女">女</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_age">長輩年齡 <span class="required">*</span> <span class="hint">（須 65 歲以上）</span></label>
+          <input type="number" id="elderly_age" name="長輩年齡" min="65" max="120" required placeholder="例如：78">
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_area">目前主要居住地方（路段） <span class="required">*</span> <span class="hint">（僅限中文與數字）</span></label>
+          <input type="text" id="elderly_area" name="居住地方" required placeholder="例如：台北市大安區仁愛路" pattern="[\u4e00-\u9fff\u3400-\u4dbf0-9\s]+" title="只能輸入中文與數字">
+        </div>
+
+        <div class="form-group">
+          <label for="elderly_hobbies">長輩的興趣愛好</label>
+          <textarea id="elderly_hobbies" name="興趣愛好" placeholder="例如：唱歌、聊天、散步、看電視……"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>👨‍👩‍👧 家屬資料</h2>
+
+        <div class="form-group">
+          <label for="family_name">家屬姓名 <span class="required">*</span></label>
+          <input type="text" id="family_name" name="家屬姓名" required placeholder="請輸入家屬姓名">
+        </div>
+
+        <div class="form-group">
+          <label for="family_phone">家屬電話 <span class="required">*</span> <span class="hint">（須為 10 位數字）</span></label>
+          <input type="tel" id="family_phone" name="家屬電話" required placeholder="例如：0912345678" pattern="[0-9]{10}" maxlength="10" title="請輸入 10 位數字">
+        </div>
+
+        <div class="form-group">
+          <label for="relationship">和長輩的關係 <span class="required">*</span></label>
+          <select id="relationship" name="關係" required>
+            <option value="">請選擇</option>
+            <option value="兒子">兒子</option>
+            <option value="女兒">女兒</option>
+            <option value="媳婦">媳婦</option>
+            <option value="女婿">女婿</option>
+            <option value="配偶">配偶</option>
+            <option value="孫子女">孫子女</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 長照評估資料</h2>
+
+        <div class="form-group">
+          <label for="assessment_1966">是否有打 1966 做評估過 <span class="required">*</span></label>
+          <select id="assessment_1966" name="是否評估1966" required>
+            <option value="">請選擇</option>
+            <option value="是">是</option>
+            <option value="否">否</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="assessment_level">評估後等級是幾級</label>
+          <select id="assessment_level" name="評估等級">
+            <option value="">尚未評估／不知道</option>
+            <option value="第2級">第2級</option>
+            <option value="第3級">第3級</option>
+            <option value="第4級">第4級</option>
+            <option value="第5級">第5級</option>
+            <option value="第6級">第6級</option>
+            <option value="第7級">第7級</option>
+            <option value="第8級">第8級</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="case_manager_unit">個管師單位</label>
+          <input type="text" id="case_manager_unit" name="個管師單位" placeholder="若沒有可留白">
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📅 參訪預約</h2>
+
+        <div class="form-group">
+          <label for="visit_date">想預約日期 <span class="required">*</span></label>
+          <input type="date" id="visit_date" name="預約日期" required>
+        </div>
+
+        <div class="form-group">
+          <label for="visit_time">方便參觀時間 <span class="required">*</span></label>
+          <select id="visit_time" name="參觀時間" required>
+            <option value="">請選擇</option>
+            <option value="上午">上午</option>
+            <option value="下午">下午</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitButton">送出參訪預約</button>
+        <div id="message"></div>
+      </div>
+    </form>
+
+    <div class="footer">
+      台北市私立六十三社區長照機構（日照機構）<br>
+      感謝您填寫參訪預約，我們會再與您聯繫。
+    </div>
   </div>
 
-  <form
-    id="reservationForm"
-    action="https://script.google.com/macros/s/AKfycbzf7ttVtqMNnTXvp9W25sgWjx7N1XxVWJF2CVHt5RFEMcrHsZ-4xZ9VCd9FmS_x544F/exec"
-    method="POST"
-    target="hidden_iframe"
-  >
+  <script>
+    const dateInput = document.getElementById("visit_date");
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
 
-    <div class="card">
-      <h2>👴 長輩基本資料</h2>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("success") === "1") {
+      const message = document.getElementById("message");
+      message.className = "success";
+      message.textContent = "✅ 預約資料已成功送出！我們會再與您聯繫。";
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
 
-      <label for="elderly_name">長輩姓名</label>
-      <input type="text" id="elderly_name" name="elderly_name" required>
+    // 居住地方：只允許中文與數字（電腦中文輸入法完全相容）
+    const areaInput = document.getElementById("elderly_area");
+    // 不在輸入過程中過濾，避免電腦中文輸入法被中斷
+    // 只在離開欄位時清理非法字元
+    areaInput.addEventListener("blur", function () {
+      this.value = this.value.replace(/[^\u4e00-\u9fff\u3400-\u4dbf0-9\s]/g, "");
+    });
 
-      <label for="elderly_gender">長輩性別</label>
-      <select id="elderly_gender" name="elderly_gender" required>
-        <option value="">請選擇</option>
-        <option value="男">男</option>
-        <option value="女">女</option>
-      </select>
+    // 家屬電話：只允許數字，最多 10 位
+    const phoneInput = document.getElementById("family_phone");
+    phoneInput.addEventListener("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
 
-      <label for="elderly_age">長輩年齡</label>
-      <input type="number" id="elderly_age" name="elderly_age" min="0" max="120" required>
+    // 年齡驗證提示
+    const ageInput = document.getElementById("elderly_age");
+    ageInput.addEventListener("input", function () {
+      if (this.value && Number(this.value) < 65) {
+        this.setCustomValidity("長輩年齡須為 65 歲以上");
+      } else {
+        this.setCustomValidity("");
+      }
+    });
 
-      <label for="elderly_area">目前主要居住哪個地方（路段）</label>
-      <textarea
-        id="elderly_area"
-        name="elderly_area"
-        rows="2"
-        placeholder="例如：台北市大安區和平東路三段123號"
-        lang="zh-TW"
-        required
-      ></textarea>
+    const form = document.getElementById("reservationForm");
+    const button = document.getElementById("submitButton");
 
-      <label for="elderly_hobbies">長輩的興趣愛好</label>
-      <textarea id="elderly_hobbies" name="elderly_hobbies" placeholder="例如：唱歌、聊天、散步、看電視……"></textarea>
-    </div>
-
-    <div class="card">
-      <h2>👨‍👩‍👧 家屬資料</h2>
-
-      <label for="family_name">家屬姓名</label>
-      <input type="text" id="family_name" name="family_name" required>
-
-      <label for="family_phone">家屬電話</label>
-      <input type="tel" id="family_phone" name="family_phone" placeholder="例如：0912345678" required>
-
-      <label for="relationship">和長輩的關係</label>
-      <select id="relationship" name="relationship" required>
-        <option value="">請選擇</option>
-        <option value="兒子">兒子</option>
-        <option value="女兒">女兒</option>
-        <option value="媳婦">媳婦</option>
-        <option value="女婿">女婿</option>
-        <option value="配偶">配偶</option>
-        <option value="孫子女">孫子女</option>
-        <option value="其他">其他</option>
-      </select>
-    </div>
-
-    <div class="card">
-      <h2>📋 長照評估資料</h2>
-
-      <label for="assessment_1966">是否有打 1966 做評估過</label>
-      <select id="assessment_1966" name="assessment_1966" required>
-        <option value="">請選擇</option>
-        <option value="是">是</option>
-        <option value="否">否</option>
-      </select>
-
-      <label for="assessment_level">評估後等級是幾級</label>
-      <select id="assessment_level" name="assessment_level">
-        <option value="">尚未評估／不知道</option>
-        <option value="第2級">第2級</option>
-        <option value="第3級">第3級</option>
-        <option value="第4級">第4級</option>
-        <option value="第5級">第5級</option>
-        <option value="第6級">第6級</option>
-        <option value="第7級">第7級</option>
-        <option value="第8級">第8級</option>
-      </select>
-
-      <label for="case_manager_unit">個管師單位</label>
-      <input type="text" id="case_manager_unit" name="case_manager_unit" placeholder="若沒有可留白">
-    </div>
-
-    <div class="card">
-      <h2>📅 參訪預約</h2>
-
-      <label for="visit_date">想預約時間日期</label>
-      <input type="date" id="visit_date" name="visit_date" required>
-
-      <label for="visit_time">方便參觀時間</label>
-      <select id="visit_time" name="visit_time" required>
-        <option value="">請選擇</option>
-        <option value="上午">上午</option>
-        <option value="下午">下午</option>
-      </select>
-
-      <button type="submit" id="submitButton">送出參訪預約</button>
-      <div id="message"></div>
-    </div>
-
-  </form>
-
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
-  <div class="footer">
-    台北市私立六十三社區長照機構(日照機構)<br>
-    感謝您填寫參訪預約，我們會再與您聯繫。
-  </div>
-
-</div>
-
-<script>
-const form = document.getElementById("reservationForm");
-const button = document.getElementById("submitButton");
-const message = document.getElementById("message");
-
-form.addEventListener("submit", function () {
-  button.disabled = true;
-  button.textContent = "資料送出中……";
-
-  message.style.display = "block";
-  message.className = "";
-  message.textContent = "資料正在送出，請稍候……";
-
-  setTimeout(function () {
-    message.className = "success";
-    message.textContent = "✅ 資料已提交，請到 Google 試算表確認是否新增資料列。";
-    button.disabled = false;
-    button.textContent = "送出參訪預約";
-  }, 2000);
-});
-</script>
-
+    form.addEventListener("submit", function () {
+      button.disabled = true;
+      button.textContent = "資料送出中……";
+    });
+  </script>
 </body>
 </html>
