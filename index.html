@@ -276,7 +276,7 @@
 
         <div class="form-group">
           <label for="elderly_area">目前主要居住地方（路段） <span class="required">*</span> <span class="hint">（僅限中文與數字）</span></label>
-          <input type="text" id="elderly_area" name="居住地方" required placeholder="例如：台北市大安區仁愛路" pattern="[\u4e00-\u9fff\u3400-\u4dbf0-9]+" title="只能輸入中文與數字">
+          <input type="text" id="elderly_area" name="居住地方" required placeholder="例如：台北市大安區仁愛路" pattern="[\u4e00-\u9fff\u3400-\u4dbf0-9\s]+" title="只能輸入中文與數字">
         </div>
 
         <div class="form-group">
@@ -388,10 +388,20 @@
       window.history.replaceState({}, document.title, window.location.pathname);
     }
 
-    // 居住地方：只允許中文與數字
+    // 居住地方：只允許中文與數字（相容電腦中文輸入法）
     const areaInput = document.getElementById("elderly_area");
+    let areaComposing = false;
+    areaInput.addEventListener("compositionstart", function () {
+      areaComposing = true;
+    });
+    areaInput.addEventListener("compositionend", function () {
+      areaComposing = false;
+      this.value = this.value.replace(/[^\u4e00-\u9fff\u3400-\u4dbf0-9\s]/g, "");
+    });
     areaInput.addEventListener("input", function () {
-      this.value = this.value.replace(/[^\u4e00-\u9fff\u3400-\u4dbf0-9]/g, "");
+      if (!areaComposing) {
+        this.value = this.value.replace(/[^\u4e00-\u9fff\u3400-\u4dbf0-9\s]/g, "");
+      }
     });
 
     // 家屬電話：只允許數字，最多 10 位
