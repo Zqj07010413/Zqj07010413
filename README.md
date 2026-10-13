@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>六十三社區長照機構｜參訪預約</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
       background: #f8f1e7;
@@ -19,12 +14,7 @@
       min-height: 100vh;
       padding: 20px 12px;
     }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
+    .container { max-width: 720px; margin: 0 auto; }
     .header {
       background: linear-gradient(135deg, #e8cfae, #d9b894);
       border-radius: 20px;
@@ -34,7 +24,6 @@
       box-shadow: 0 4px 16px rgba(120, 90, 60, 0.12);
       position: relative;
     }
-
     .header-logo {
       position: absolute;
       top: 16px;
@@ -47,7 +36,6 @@
       padding: 4px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-
     .header h1 {
       color: #5a4636;
       font-size: 28px;
@@ -56,20 +44,13 @@
       padding-left: 60px;
       padding-right: 60px;
     }
-
     .header .subtitle {
       color: #6b5544;
       font-size: 16px;
       margin-bottom: 10px;
       font-weight: 600;
     }
-
-    .header p {
-      color: #7a6554;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
+    .header p { color: #7a6554; font-size: 14px; line-height: 1.7; }
     .card {
       background: #fffaf4;
       border-radius: 18px;
@@ -77,7 +58,6 @@
       margin-bottom: 18px;
       box-shadow: 0 4px 14px rgba(120, 90, 60, 0.08);
     }
-
     .card h2 {
       color: #6b5544;
       font-size: 19px;
@@ -85,11 +65,7 @@
       padding-left: 12px;
       margin-bottom: 20px;
     }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
+    .form-group { margin-bottom: 18px; }
     label {
       display: block;
       margin-bottom: 6px;
@@ -97,24 +73,10 @@
       font-size: 15px;
       color: #5f5146;
     }
-
-    label .required {
-      color: #c45c26;
-      margin-left: 2px;
-    }
-
-    label .hint {
-      font-weight: normal;
-      font-size: 13px;
-      color: #8b7a6b;
-    }
-
-    input[type="text"],
-    input[type="tel"],
-    input[type="number"],
-    input[type="date"],
-    select,
-    textarea {
+    label .required { color: #c45c26; margin-left: 2px; }
+    label .hint { font-weight: normal; font-size: 13px; color: #8b7a6b; }
+    input[type="text"], input[type="tel"], input[type="number"], input[type="date"],
+    select, textarea {
       width: 100%;
       padding: 12px 14px;
       border: 1.5px solid #dccdbb;
@@ -125,20 +87,12 @@
       color: #5f5146;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
+    input:focus, select:focus, textarea:focus {
       outline: none;
       border-color: #c99d68;
       box-shadow: 0 0 0 3px rgba(201, 157, 104, 0.2);
     }
-
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
+    textarea { min-height: 90px; resize: vertical; }
     select {
       appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b5544' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
@@ -146,7 +100,6 @@
       background-position: right 14px center;
       padding-right: 36px;
     }
-
     .btn-submit {
       width: 100%;
       padding: 15px;
@@ -161,20 +114,9 @@
       margin-top: 8px;
       transition: background 0.2s, transform 0.15s;
     }
-
-    .btn-submit:hover:not(:disabled) {
-      background: #b88a55;
-    }
-
-    .btn-submit:active:not(:disabled) {
-      transform: scale(0.98);
-    }
-
-    .btn-submit:disabled {
-      background: #c8b8a6;
-      cursor: not-allowed;
-    }
-
+    .btn-submit:hover:not(:disabled) { background: #b88a55; }
+    .btn-submit:active:not(:disabled) { transform: scale(0.98); }
+    .btn-submit:disabled { background: #c8b8a6; cursor: not-allowed; }
     #message {
       display: none;
       margin-top: 16px;
@@ -184,21 +126,12 @@
       font-size: 15px;
       font-weight: 600;
     }
-
     #message.success {
       display: block;
       background: #edf5e9;
       color: #3d6b3a;
       border: 1px solid #c5dfc0;
     }
-
-    #message.error {
-      display: block;
-      background: #fdf0ee;
-      color: #a33a2c;
-      border: 1px solid #f0c4bc;
-    }
-
     .footer {
       text-align: center;
       color: #8b7a6b;
@@ -207,14 +140,9 @@
       margin-top: 20px;
       padding-bottom: 20px;
     }
-
     @media (max-width: 480px) {
-      .header h1 {
-        font-size: 24px;
-      }
-      .card {
-        padding: 22px 18px;
-      }
+      .header h1 { font-size: 24px; }
+      .card { padding: 22px 18px; }
     }
   </style>
 </head>
@@ -227,23 +155,16 @@
       <p>歡迎家屬與長輩提前預約參觀，讓我們一起了解適合長輩的照顧服務。</p>
     </div>
 
-    <form 
-      id="reservationForm"
-      action="https://formsubmit.co/chen.xinyu0106@gmail.com"
-      method="POST"
-    >
-      <input type="hidden" name="_subject" value="【六十三社區長照】新參訪預約通知">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://zqj07010413.github.io/Zqj07010413/?success=1">
-      <input type="text" name="_honey" style="display:none">
+    <form id="reservationForm" action="https://api.sheetmonkey.io/form/kyfv745x4f79g9DkKAKUQv" method="POST">
+      <!-- 自動填入時間 -->
+      <input type="hidden" name="填表時間" value="x-sheetmonkey-current-date-time">
 
       <div class="card">
         <h2>👴 長輩基本資料</h2>
 
         <div class="form-group">
-          <label for="elderly_name">長輩姓名 <span class="required">*</span></label>
-          <input type="text" id="elderly_name" name="長輩姓名" required placeholder="請輸入長輩姓名">
+          <label for="elderly_name">長輩名稱 <span class="required">*</span></label>
+          <input type="text" id="elderly_name" name="長輩名稱" required placeholder="請輸入長輩姓名">
         </div>
 
         <div class="form-group">
@@ -262,7 +183,7 @@
 
         <div class="form-group">
           <label for="elderly_area">目前主要居住地方（路段） <span class="required">*</span> <span class="hint">（僅限中文與數字）</span></label>
-          <input type="text" id="elderly_area" name="居住地方" required placeholder="例如：台北市大安區仁愛路" pattern="[\u4e00-\u9fff\u3400-\u4dbf0-9\s]+" title="只能輸入中文與數字">
+          <input type="text" id="elderly_area" name="居住路段" required placeholder="例如：台北市大安區仁愛路">
         </div>
 
         <div class="form-group">
@@ -286,7 +207,7 @@
 
         <div class="form-group">
           <label for="relationship">和長輩的關係 <span class="required">*</span></label>
-          <select id="relationship" name="關係" required>
+          <select id="relationship" name="與長輩關係" required>
             <option value="">請選擇</option>
             <option value="兒子">兒子</option>
             <option value="女兒">女兒</option>
@@ -304,7 +225,7 @@
 
         <div class="form-group">
           <label for="assessment_1966">是否有打 1966 做評估過 <span class="required">*</span></label>
-          <select id="assessment_1966" name="是否評估1966" required>
+          <select id="assessment_1966" name="1966評估" required>
             <option value="">請選擇</option>
             <option value="是">是</option>
             <option value="否">否</option>
@@ -327,7 +248,7 @@
 
         <div class="form-group">
           <label for="case_manager_unit">個管師單位</label>
-          <input type="text" id="case_manager_unit" name="個管師單位" placeholder="若沒有可留白">
+          <input type="text" id="case_manager_unit" name="個案管理師單位" placeholder="若沒有可留白">
         </div>
       </div>
 
@@ -360,10 +281,12 @@
   </div>
 
   <script>
+    // 預約日期不能選今天以前
     const dateInput = document.getElementById("visit_date");
     const today = new Date().toISOString().split("T")[0];
     dateInput.setAttribute("min", today);
 
+    // 成功送出後顯示訊息
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("success") === "1") {
       const message = document.getElementById("message");
@@ -372,21 +295,19 @@
       window.history.replaceState({}, document.title, window.location.pathname);
     }
 
-    // 居住地方：只允許中文與數字（電腦中文輸入法完全相容）
+    // 居住路段：離開欄位時只保留中文與數字
     const areaInput = document.getElementById("elderly_area");
-    // 不在輸入過程中過濾，避免電腦中文輸入法被中斷
-    // 只在離開欄位時清理非法字元
     areaInput.addEventListener("blur", function () {
       this.value = this.value.replace(/[^\u4e00-\u9fff\u3400-\u4dbf0-9\s]/g, "");
     });
 
-    // 家屬電話：只允許數字，最多 10 位
+    // 家屬電話：只允許 10 位數字
     const phoneInput = document.getElementById("family_phone");
     phoneInput.addEventListener("input", function () {
       this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
     });
 
-    // 年齡驗證提示
+    // 年齡必須 65 以上
     const ageInput = document.getElementById("elderly_age");
     ageInput.addEventListener("input", function () {
       if (this.value && Number(this.value) < 65) {
@@ -396,9 +317,9 @@
       }
     });
 
+    // 送出時按鈕變狀態
     const form = document.getElementById("reservationForm");
     const button = document.getElementById("submitButton");
-
     form.addEventListener("submit", function () {
       button.disabled = true;
       button.textContent = "資料送出中……";
