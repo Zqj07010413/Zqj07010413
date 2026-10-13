@@ -133,7 +133,7 @@
         <label for="elderly_age">長輩年齡</label>
         <input type="number" id="elderly_age" name="elderly_age" min="0" max="120" required>
         <label for="elderly_area">目前主要居住哪個地方（路段）</label>
-        <input type="text" id="elderly_area" name="elderly_area" placeholder="例如：台北市○○區○○路" required>
+        <input type="text" id="elderly_area" name="elderly_area" placeholder="例如：台北市○○區○○路" required lang="zh-Hant" inputmode="text" autocomplete="street-address">
         <label for="elderly_hobbies">長輩的興趣愛好</label>
         <textarea id="elderly_hobbies" name="elderly_hobbies" placeholder="例如：唱歌、聊天、散步、看電視……"></textarea>
       </div>
