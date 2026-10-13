@@ -68,13 +68,15 @@ label {
 input,
 select,
 textarea {
+  display: block;
   width: 100%;
   padding: 12px 14px;
   border: 1px solid #dccdbb;
   border-radius: 12px;
   background: white;
   font-size: 16px;
-  font-family: inherit;
+  font-family: "Microsoft JhengHei", sans-serif;
+  color: #5f5146;
 }
 
 textarea {
@@ -124,7 +126,6 @@ button:disabled {
 </head>
 
 <body>
-
 <div class="container">
 
   <div class="header">
@@ -162,8 +163,10 @@ button:disabled {
         id="elderly_area"
         name="elderly_area"
         placeholder="例如：台北市大安區和平東路三段123號"
-        lang="zh-Hant"
-        autocomplete="street-address"
+        lang="zh-TW"
+        inputmode="text"
+        autocapitalize="off"
+        spellcheck="false"
         required
       >
 
@@ -220,54 +223,4 @@ button:disabled {
     </div>
 
     <div class="card">
-      <h2>📅 參訪預約</h2>
-
-      <label for="visit_date">想預約時間日期</label>
-      <input type="date" id="visit_date" name="visit_date" required>
-
-      <label for="visit_time">方便參觀時間</label>
-      <select id="visit_time" name="visit_time" required>
-        <option value="">請選擇</option>
-        <option value="上午">上午</option>
-        <option value="下午">下午</option>
-      </select>
-
-      <button type="submit" id="submitButton">送出參訪預約</button>
-      <div id="message"></div>
-    </div>
-
-  </form>
-
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
-  <div class="footer">
-    台北市私立六十三社區長照機構(日照機構)<br>
-    感謝您填寫參訪預約，我們會再與您聯繫。
-  </div>
-
-</div>
-
-<script>
-const form = document.getElementById("reservationForm");
-const button = document.getElementById("submitButton");
-const message = document.getElementById("message");
-
-form.addEventListener("submit", function () {
-  button.disabled = true;
-  button.textContent = "資料送出中……";
-
-  message.style.display = "block";
-  message.className = "";
-  message.textContent = "資料正在送出，請稍候……";
-
-  setTimeout(function () {
-    message.className = "success";
-    message.textContent = "✅ 資料已提交，請以 Google 試算表是否新增資料列確認是否成功。";
-    button.disabled = false;
-    button.textContent = "送出參訪預約";
-  }, 2000);
-});
-</script>
-
-</body>
-</html>
+      <
